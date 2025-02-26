@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Button } from './ui/button';
-import { ChatRequestOptions, CreateMessage, Message } from 'ai';
-import { memo } from 'react';
+import { motion } from "framer-motion";
+import { Button } from "./ui/button";
+import { ChatRequestOptions, CreateMessage, Message } from "ai";
+import { memo } from "react";
 
 interface SuggestedActionsProps {
   chatId: string;
   append: (
     message: Message | CreateMessage,
-    chatRequestOptions?: ChatRequestOptions,
+    chatRequestOptions?: ChatRequestOptions
   ) => Promise<string | null | undefined>;
 }
 
 function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
   const suggestedActions = [
     {
-      title: 'What are the advantages',
-      label: 'of using Next.js?',
-      action: 'What are the advantages of using Next.js?',
+      title: "How can",
+      label: "AI employees improve business efficiency?",
+      action: "How can AI employees improve business efficiency?",
     },
     {
-      title: 'Write code to',
-      label: `demonstrate djikstra's algorithm`,
-      action: `Write code to demonstrate djikstra's algorithm`,
+      title: "Compare the",
+      label: "different AI agents in Vera AI",
+      action: "Compare the different AI agents in Vera AI",
     },
     {
-      title: 'Help me write an essay',
-      label: `about silicon valley`,
-      action: `Help me write an essay about silicon valley`,
+      title: "Explore the potential",
+      label: "limitations of AI employees",
+      action: "Explore the potential limitations of AI employees",
     },
     {
-      title: 'What is the weather',
-      label: 'in San Francisco?',
-      action: 'What is the weather in San Francisco?',
+      title: "How might",
+      label: "Vera AI transform small business operations?",
+      action: "How might Vera AI transform small business operations?",
     },
   ];
 
@@ -46,15 +46,15 @@ function PureSuggestedActions({ chatId, append }: SuggestedActionsProps) {
           exit={{ opacity: 0, y: 20 }}
           transition={{ delay: 0.05 * index }}
           key={`suggested-action-${suggestedAction.title}-${index}`}
-          className={index > 1 ? 'hidden sm:block' : 'block'}
+          className={index > 1 ? "hidden sm:block" : "block"}
         >
           <Button
             variant="ghost"
             onClick={async () => {
-              window.history.replaceState({}, '', `/chat/${chatId}`);
+              window.history.replaceState({}, "", `/chat/${chatId}`);
 
               append({
-                role: 'user',
+                role: "user",
                 content: suggestedAction.action,
               });
             }}
